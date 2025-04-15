@@ -33,7 +33,7 @@ def job():
     print("Notification sent")
 
 # 毎日9時に実行
-schedule.every().day.at("09:00").do(job)
+schedule.every().day.at("06:00").do(job) #通知時間変更
 
 # スケジューラのループ
 while True:
