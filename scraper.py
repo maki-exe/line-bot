@@ -25,7 +25,7 @@ def login_and_scrape(login_url, target_page):
         # ログイン情報入力（セレクタは大学のサイトに合わせる）
         driver.find_element(By.ID, "username").send_keys(username)
         driver.find_element(By.ID, "password").send_keys(password)
-        driver.find_element(By.ID, "login-button").click()
+        driver.find_element(By.ID, "LoginBtn").click()
         time.sleep(3)
 
         # 対象ページに移動
