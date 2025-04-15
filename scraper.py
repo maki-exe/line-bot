@@ -20,7 +20,7 @@ def login_and_scrape(login_url, target_page):
     try:
         # ログインページにアクセス
         driver.get(login_url)
-        time.sleep(2)
+        time.sleep(3)
 
         # ログイン情報入力（セレクタは大学のサイトに合わせる）
         driver.find_element(By.ID, "username").send_keys(username)
@@ -30,7 +30,7 @@ def login_and_scrape(login_url, target_page):
 
         # 対象ページに移動
         driver.get(target_page)
-        time.sleep(2)
+        time.sleep(3)
 
         # コンテンツを取得（例: お知らせリスト）
         content = driver.find_element(By.CLASS_NAME, "news-list").text  # セレクタを調整
