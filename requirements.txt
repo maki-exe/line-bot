@@ -5,3 +5,4 @@ requests
 notion-client
 python-dotenv
 gunicorn　#grokより追加
+google-generativeai #gemini
