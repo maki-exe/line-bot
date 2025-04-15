@@ -15,8 +15,8 @@ def login_and_scrape(url, username, password, target_page):
 
     try:
         # ログインページにアクセス
-        driver.get(url)
-        time.sleep(2)  # ページ読み込み待機
+        driver.get(https://ecsylms1.kj.yamagata-u.ac.jp/webclass/login.php)
+        time.sleep(3)  # ページ読み込み待機
 
         # ユーザー名とパスワードを入力
         driver.find_element(By.ID, "username").send_keys(username)  # ID は実際の要素に合わせる
