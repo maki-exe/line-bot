@@ -4,3 +4,4 @@ selenium
 requests
 notion-client
 python-dotenv
+gunicorn　#grokより追加
