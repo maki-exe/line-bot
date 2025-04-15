@@ -1,3 +1,7 @@
+import os
+username = os.getenv("UNIVERSITY_USERNAME")
+password = os.getenv("UNIVERSITY_PASSWORD")
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
