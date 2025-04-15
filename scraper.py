@@ -21,7 +21,7 @@ def login_and_scrape(url, username, password, target_page):
         # ユーザー名とパスワードを入力
         driver.find_element(By.ID, "username").send_keys(username)  # ID は実際の要素に合わせる
         driver.find_element(By.ID, "password").send_keys(password)  # 同上
-        driver.find_element(By.ID, "login-button").click()  # ログインボタン
+        driver.find_element(By.ID, "LoginBtn").click()  # ログインボタン
         time.sleep(3)  # ログイン処理待機
 
         # 対象ページに移動
