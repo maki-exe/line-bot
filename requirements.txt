@@ -1,10 +1,9 @@
 flask
 line-bot-sdk==2.4.2  # ※古いSDKを使っているならこのまま
 selenium
-requests
 notion-client
 python-dotenv
 gunicorn　#grokより追加
 google-generativeai #gemini
 schedule
-requests==2.32.3
+requests==2.28.2
