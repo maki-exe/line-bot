@@ -7,3 +7,4 @@ python-dotenv
 gunicorn　#grokより追加
 google-generativeai #gemini
 schedule
+requests==2.32.3
