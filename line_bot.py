@@ -33,7 +33,13 @@ def handle_message(event):
     if event.message.text.lower() == "最新情報":
         # スクレイピング
          login_url = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/login.php"
-        target_page = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/ip_mods.php/plugin/score_summary_table/dashboard"
+        target_page = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/ip_mods.php/plugin/score_summary_table/dashboard”
+        content = login_and_scrape(login_url, target_page)
+        response = content if content else "Failed to scrape content."
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=response[:1000])  # LINEの文字数制限
+        )
         # 要約
         summary = summarize_content(content)
         
