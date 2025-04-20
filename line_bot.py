@@ -32,7 +32,7 @@ def callback():
 def handle_message(event):
     if event.message.text.lower() == "最新情報":
         # スクレイピング
-         login_url = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/login.php"
+        login_url = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/login.php"
         target_page = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/ip_mods.php/plugin/score_summary_table/dashboard"
         content = login_and_scrape(login_url, target_page)
         response = content if content else "Failed to scrape content."
