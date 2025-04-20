@@ -21,7 +21,7 @@ def login_and_scrape(login_url, target_page):
     # 一意のユーザー データ ディレクトリ
     temp_dir = tempfile.mkdtemp()
     options.add_argument(f"--user-data-dir={temp_dir}")
-    # ChromeDriverのパスを指定
+    # Chromeのバイナリパスを指定
     options.binary_location = "/usr/bin/google-chrome"
     
     driver = webdriver.Chrome(options=options)
