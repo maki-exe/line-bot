@@ -17,11 +17,12 @@ def login_and_scrape(login_url, target_page):
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-images")
     options.add_argument("--blink-settings=imagesEnabled=false")
-    # 一意のユーザー データ ディレクトリを指定
+    options.add_argument("--disable-extensions")
+    # 一意のユーザー データ ディレクトリ
     temp_dir = tempfile.mkdtemp()
     options.add_argument(f"--user-data-dir={temp_dir}")
-    # メモリ最適化
-    options.add_argument("--disable-extensions")
+    # ChromeDriverのパスを指定
+    options.binary_location = "/usr/bin/google-chrome"
     
     driver = webdriver.Chrome(options=options)
     
