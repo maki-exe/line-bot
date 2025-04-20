@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
+import tempfile
 
 def login_and_scrape(login_url, target_page):
     username = os.getenv("UNIVERSITY_USERNAME")
@@ -15,8 +16,14 @@ def login_and_scrape(login_url, target_page):
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-images")
+    options.add_argument("--blink-settings=imagesEnabled=false")
+    # 一意のユーザー データ ディレクトリを指定
+    temp_dir = tempfile.mkdtemp()
+    options.add_argument(f"--user-data-dir={temp_dir}")
+    # メモリ最適化
+    options.add_argument("--disable-extensions")
     
-    driver = webdriver.Chrome(options=options)  # driverを定義！
+    driver = webdriver.Chrome(options=options)
     
     try:
         driver.get(login_url)
