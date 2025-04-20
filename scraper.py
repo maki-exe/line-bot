@@ -3,6 +3,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 import os
+login_url = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/login.php"
+target_page = "https://ecsylms1.kj.yamagata-u.ac.jp//webclass/ip_mods.php/plugin/score_summary_table/dashboard"
 
 def login_and_scrape(login_url, target_page):
     # 環境変数から認証情報を取得
