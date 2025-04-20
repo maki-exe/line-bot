@@ -4,7 +4,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import os
 from scraper import login_and_scrape
-# from summarize import summarize_content  # 未実装なのでコメントアウト
+# from summarize import summarize_content  # 未実装
 
 app = Flask(__name__)
 
@@ -20,6 +20,7 @@ def callback():
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
+        print("Invalid signature")
         abort(400)
     return "OK"
 
@@ -29,22 +30,35 @@ def handle_message(event):
     if event.message.text.lower() == "最新情報":
         login_url = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/login.php"
         target_page = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/ip_mods.php/plugin/score_summary_table/dashboard"
-        content = login_and_scrape(login_url, target_page)
-        response = content if content else "Failed to scrape content."
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=response[:1000])
-        )
+        try:
+            content = login_and_scrape(login_url, target_page)
+            response = content if content else "Failed to scrape content."
+            print(f"Scraped content: {response}")
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=response[:1000])
+            )
+        except Exception as e:
+            print(f"Error in handle_message: {e}")
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=f"エラーが発生しました: {str(e)}")
+            )
 
 @app.route("/notify", methods=["GET"])
 def notify():
     user_id = os.getenv("LINE_USER_ID")
     login_url = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/login.php"
     target_page = "https://ecsylms1.kj.yamagata-u.ac.jp/webclass/ip_mods.php/plugin/score_summary_table/dashboard"
-    content = login_and_scrape(login_url, target_page)
-    response = content if content else "Failed to fetch content."
-    line_bot_api.push_message(
-        user_id,
-        TextSendMessage(text=response[:1000])
-    )
+    try:
+        content = login_and_scrape(login_url, target_page)
+        response = content if content else "Failed to fetch content."
+        print(f"Notify content: {response}")
+        line_bot_api.push_message(
+            user_id,
+            TextSendMessage(text=response[:1000])
+        )
+    except Exception as e:
+        print(f"Error in notify: {e}")
+        return f"Error: {str(e)}"
     return "Notification sent"
