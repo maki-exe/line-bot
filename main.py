@@ -42,5 +42,5 @@ if __name__ == "__main__":
     scheduler_thread.start()
     
     # Flaskアプリを起動
-    port = int(os.getenv("PORT", 10000))
+    port = int(os.getenv("PORT", 5000))  # RenderのPORTを取得
     app.run(host="0.0.0.0", port=port, debug=False)
