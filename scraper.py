@@ -21,12 +21,12 @@ def login_and_scrape(login_url, target_page):
     try:
         # ログインページにアクセス
         driver.get(login_url)
-        time.sleep(2)  # ページ読み込み待機（後で最適化可能）
+        time.sleep(3)  # ページ読み込み待機（後で最適化可能）
 
         # ログイン情報入力（セレクタを大学のサイトに合わせる）
-        driver.find_element(By.ID, "user_id").send_keys(username)  # セレクタを変更
-        driver.find_element(By.ID, "pass").send_keys(password)
-        driver.find_element(By.ID, "login-btn").click()
+        driver.find_element(By.ID, "username").send_keys(username)  # セレクタを変更
+        driver.find_element(By.ID, "passward").send_keys(password)
+        driver.find_element(By.ID, "LoginBtn").click()
         time.sleep(3)  # ログイン処理待機
 
         # 対象ページに移動
